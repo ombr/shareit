@@ -31,6 +31,7 @@ gem 'ruby-box'
 gem 'delayed_job_active_record'
 gem 'foreman'
 gem 'rails_12factor', group: :production
+gem 'unicorn'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
