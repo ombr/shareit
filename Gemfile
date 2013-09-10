@@ -29,6 +29,7 @@ gem 'haml'
 gem 'ruby-box'
 gem 'delayed_job_active_record'
 gem 'foreman'
+gem 'rails_12factor', group: :production
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
