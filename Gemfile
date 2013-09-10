@@ -27,6 +27,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem 'haml'
+gem 'ruby-box'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -34,8 +35,11 @@ group :doc do
 end
 
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 group :test do
   gem 'cucumber-rails', :require => false
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'capybara'
 end

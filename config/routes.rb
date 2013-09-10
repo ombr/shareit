@@ -3,7 +3,11 @@ Blog::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :imports, only: [:index]
+  resources :imports, only: [:index] do
+    collection do
+      get :box
+    end
+  end
   root 'welcome#index'
 
   # Example of regular route:

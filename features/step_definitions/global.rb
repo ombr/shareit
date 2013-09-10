@@ -2,13 +2,17 @@ Given(/^I am loggued in$/) do
 end
 
 When(/^I import my box\.com account$/) do
-  visit root_url
+  visit root_path
   click_link 'Import'
-  click_link 'box'
+  click_link 'Box'
+  fill_in 'login', with: 'ombr@ombr.net'
+  fill_in 'password', with: ''
+  find('.login_submit').click
+  find('#consent_accept_button').click
+  visit current_url.gsub(ENV['BOX_AUTHORIZE_URL'], box_imports_path)# We remove https for easy testing :-D
 end
 
-When(/^I wait (\d+) seconds$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I wait for the jobs$/) do
 end
 
 Then(/^I should see my hello_world\.txt document$/) do
