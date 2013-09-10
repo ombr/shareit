@@ -6,11 +6,11 @@ connection: &connection
   host: localhost
 
 development:
-  database: studyka
+  database: blog
   <<: *connection
 
 test: &test
-  database: studyka
+  database: blog
   <<: *connection
 
 cucumber:
