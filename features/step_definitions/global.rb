@@ -16,5 +16,5 @@ When(/^I wait for the jobs$/) do
 end
 
 Then(/^I should see my hello_world\.txt document$/) do
-  pending # express the regexp above with the code you wish you had
+  page.has_content?('hello_world.txt')
 end

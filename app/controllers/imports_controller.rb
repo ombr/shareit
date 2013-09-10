@@ -1,28 +1,29 @@
 class ImportsController < ApplicationController
+
   def index
+    @box_url = RubyBox::Session.new({
+      client_id: ENV['BOX_CLIENT_ID'],
+      client_secret: ENV['BOX_CLIENT_SECRET']
+    }).authorize_url(ENV['BOX_AUTHORIZE_URL'])
   end
+
   def box
+    if params[:code].blank?
+      return redirect root_path
+    end
     session = RubyBox::Session.new({
       client_id: ENV['BOX_CLIENT_ID'],
       client_secret: ENV['BOX_CLIENT_SECRET']
     })
-    if params[:code].blank?
-      authorize_url = session.authorize_url(ENV['BOX_AUTHORIZE_URL'])
-      redirect_to authorize_url
-    else
-      @token = session.get_access_token(params[:code])
-      #session.access_token = @token.token
-      #required ?
-      session = RubyBox::Session.new({
-        client_id: ENV['BOX_CLIENT_ID'],
-        client_secret: ENV['BOX_CLIENT_SECRET'],
-        access_token: @token.token
-      })
 
-      client = RubyBox::Client.new(session)
-      @folder = client.folder('/subfolder')
-      @folder.create_shared_link
-      #raise client.folder('/').files.inspect
-    end
+    @token = session.get_access_token(params[:code])
+
+    session = RubyBox::Session.new({
+      client_id: ENV['BOX_CLIENT_ID'],
+      client_secret: ENV['BOX_CLIENT_SECRET'],
+      access_token: @token.token
+    })
+    client = RubyBox::Client.new(session)
+    @files = client.folder('/').files
   end
 end

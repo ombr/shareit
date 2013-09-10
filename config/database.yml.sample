@@ -1,0 +1,17 @@
+connection: &connection
+  username: ombr
+  password:
+  adapter: postgresql
+  encoding: utf8
+  host: localhost
+
+development:
+  database: studyka
+  <<: *connection
+
+test: &test
+  database: studyka
+  <<: *connection
+
+cucumber:
+  <<: *test
