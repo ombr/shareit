@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910181019) do
+ActiveRecord::Schema.define(version: 20130914140315) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -27,6 +27,31 @@ ActiveRecord::Schema.define(version: 20130910181019) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "items", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file"
+    t.string   "path"
+  end
+
+  create_table "items_posts", force: true do |t|
+    t.integer "post_id"
+    t.integer "item_id"
+  end
+
+  create_table "posts", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "path"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

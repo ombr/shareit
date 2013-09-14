@@ -16,5 +16,21 @@ When(/^I wait for the jobs$/) do
 end
 
 Then(/^I should see my hello_world\.txt document$/) do
-  page.has_content?('hello_world.txt')
+  expect(page).to have_content name 'hello_world.txt'
+end
+
+When(/^I import theses files :$/) do |table|
+  table.raw.each do |line|
+    file = File.open File.join(Rails.root, line[1])
+    Item.create!(
+      path: line[0],
+      file: line[1]
+    )
+  end
+end
+
+Then(/^I should see my post "(.*?)"\.$/) do |name|
+  visit root_path
+  expect(page).to have_content name
+  sleep 3
 end

@@ -32,6 +32,8 @@ gem 'delayed_job_active_record'
 gem 'foreman'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
+gem 'carrierwave'
+gem 'rmagick'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -40,7 +42,12 @@ end
 
 
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'rspec-rails'
 
+group :development do
+  gem 'wirble'
+  gem 'hirb'
+end
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
