@@ -28,6 +28,7 @@ describe Post do
      it { subject.postname('2013_09-15_secOnD_pOst').should == 'Second post' }
      it { subject.postname('2013-----09-_15_---secOnD___pOst').should == 'Second post' }
      it { subject.postname('2013-----09-_15_---Étoile').should == 'Étoile' }
+     it { subject.postname('2013/Ireland/2013-09-14_First_Post').should == 'First post' }
     end
   end
 end

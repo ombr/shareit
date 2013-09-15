@@ -7,4 +7,5 @@ Feature: Import
   Scenario: Import box.com content
     Given I am loggued in
     When I import my box.com account
-    Then I should see my hello_world.txt document
+    And I Wait for the jobs
+    Then I should see my post "First post".

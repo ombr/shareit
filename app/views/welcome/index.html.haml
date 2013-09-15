@@ -2,4 +2,8 @@
 %ul
   - Post.all.each do |p|
     %li
-    = "#{p.name}"
+      = "#{p.name}"
+      %ul
+        - p.items.each do |i|
+          %li
+            = image_tag i.file.thumb.url

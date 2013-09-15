@@ -9,7 +9,7 @@ class ImportsController < ApplicationController
 
   def box
     if params[:code].blank?
-      return redirect root_path
+      return redirect_to root_path
     end
     session = RubyBox::Session.new({
       client_id: ENV['BOX_CLIENT_ID'],
@@ -17,13 +17,8 @@ class ImportsController < ApplicationController
     })
 
     @token = session.get_access_token(params[:code])
-
-    session = RubyBox::Session.new({
-      client_id: ENV['BOX_CLIENT_ID'],
-      client_secret: ENV['BOX_CLIENT_SECRET'],
-      access_token: @token.token
-    })
-    client = RubyBox::Client.new(session)
-    @files = client.folder('/').files
+    Import.box_import(@token.token, @token.refresh_token)
+    flash[:notice] = 'Your files will be imported soon :-D'
+    redirect_to root_path
   end
 end

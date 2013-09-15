@@ -12,8 +12,8 @@ class Post < ActiveRecord::Base
 
   class << self
     def postname(filename)
-      if filename.match /\d{4}[-_]+\d\d[-_]+\d\d[-_]+(.*)/
-        return $1.humanize.squish
+      if filename.match /(.*\/)*\d{4}[-_]+\d\d[-_]+\d\d[-_]+(.*)/
+        return $2.humanize.squish
       end
       filename
     end

@@ -12,11 +12,8 @@ When(/^I import my box\.com account$/) do
   visit current_url.gsub(ENV['BOX_AUTHORIZE_URL'], box_imports_path)# We remove https for easy testing :-D
 end
 
-When(/^I wait for the jobs$/) do
-end
-
-Then(/^I should see my hello_world\.txt document$/) do
-  expect(page).to have_content name 'hello_world.txt'
+When(/^I Wait for the jobs$/) do
+  Delayed::Worker.new.work_off
 end
 
 When(/^I import theses files :$/) do |table|

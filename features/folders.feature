@@ -4,7 +4,6 @@ Feature: Folder parsing
   As a loggued in user
   I want to import content (files and directories)
   I should see posts ready to share on the site
-  @wip @javascript
   Scenario: I import some files and it displays posts
     Given I am loggued in
     When I import theses files :
