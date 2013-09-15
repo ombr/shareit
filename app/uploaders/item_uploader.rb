@@ -19,8 +19,12 @@ class ItemUploader < CarrierWave::Uploader::Base
     ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   end
 
+  process :resize_to_fill => [200,200]
+  process :fix_exif_rotation
+
   version :thumb do
-    process :resize_to_fill => [50,50]
+    #process :resize_to_fill => [200,200]
+    process :strip
   end
 
 end

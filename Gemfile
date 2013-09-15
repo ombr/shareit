@@ -33,7 +33,12 @@ gem 'foreman'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
 gem 'carrierwave'
+gem 'fog'
 gem 'rmagick'
+gem 'mini_exiftool'
+gem 'parallel'
+
+gem 'geocoder'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
