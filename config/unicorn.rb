@@ -2,6 +2,8 @@ worker_processes 3
 timeout 30
 preload_app true
 
+@delayed_job_pid = nil
+
 before_fork do |server, worker|
 
   Signal.trap 'TERM' do
@@ -9,8 +11,13 @@ before_fork do |server, worker|
     Process.kill 'QUIT', Process.pid
   end
 
+
+  if defined?(ActiveRecord::Base)
+    @delayed_job_pid ||= spawn("bundle exec rake jobs:work")
+  end
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
+
 end
 
 after_fork do |server, worker|
