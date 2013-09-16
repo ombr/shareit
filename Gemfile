@@ -35,7 +35,7 @@ gem 'unicorn'
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
-gem 'mini_exiftool'
+gem 'mini_exiftool_vendored'
 gem 'parallel'
 
 gem 'geocoder'

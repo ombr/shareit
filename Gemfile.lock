@@ -114,6 +114,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.24)
     mini_exiftool (2.3.0)
+    mini_exiftool_vendored (9.2.7.v1)
+      mini_exiftool (>= 1.6.0)
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.9)
@@ -242,7 +244,7 @@ DEPENDENCIES
   hirb
   jbuilder (~> 1.2)
   jquery-rails
-  mini_exiftool
+  mini_exiftool_vendored
   parallel
   pg
   rails (= 4.0.0)
