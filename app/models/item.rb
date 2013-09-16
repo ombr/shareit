@@ -18,14 +18,14 @@ class Item < ActiveRecord::Base
 
   def exifs= exifs
     self[:exifs] = exifs
-    if exifs.rating
-      self.rating= exifs.rating
+    if exifs[:rating]
+      self.rating= exifs[:rating]
     end
   end
 
   def extract_exif
     exifs = MiniExiftool.new file.current_path
-    self.exifs= exifs
+    self.exifs= exifs.to_hash
   end
 
 end

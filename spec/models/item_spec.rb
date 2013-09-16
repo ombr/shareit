@@ -11,11 +11,6 @@ describe Item do
       Item.count.should == 1
     end
 
-    it 'test' do
-      subject.path.should == path
-      raise Item.first.path
-    end
-
     it { subject.path.should == path }
 
     it 'creates on or more posts' do
