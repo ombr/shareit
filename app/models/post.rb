@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
 
+  validates :path, presence: true, uniqueness: true
+
   has_and_belongs_to_many :items
 
   def path= path

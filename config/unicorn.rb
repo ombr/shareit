@@ -1,6 +1,7 @@
 worker_processes 3
 timeout 30
 preload_app true
+listen ENV['PORT'] || 3000
 
 @delayed_job_pid = nil
 
