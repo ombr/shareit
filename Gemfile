@@ -37,6 +37,7 @@ gem 'fog'
 gem 'rmagick'
 gem 'mini_exiftool_vendored'
 gem 'parallel'
+gem 'devise'
 
 gem 'geocoder'
 
@@ -47,6 +48,7 @@ end
 
 
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'factory_girl_rails', :groups => [:development, :test]
 gem 'rspec-rails'
 
 group :development do
