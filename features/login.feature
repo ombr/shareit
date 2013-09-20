@@ -1,5 +1,4 @@
 # language: en
-@wip
 Feature: Login
   In order to manage my informations (credentials and friends)
   As a user of the website
