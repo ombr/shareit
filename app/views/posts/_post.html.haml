@@ -1,2 +1,9 @@
-= post.name
-= render post.items.order('rating DESC').limit(3)
+- items = post.items.order('rating DESC').limit(3)
+.row
+  .col-xs-12
+  .row
+    .col-xs-12
+      %h1= post.name
+  .row
+    .col-xs-12
+      =render items

@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 0e88056ac5d58fb0bbd23d3fe929eac01712d964
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -30,6 +38,9 @@ GEM
     atomic (1.1.13)
     awesome_print (1.1.0)
     bcrypt-ruby (3.1.2)
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -247,6 +258,8 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bootstrap-sass!
+  bourbon
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)

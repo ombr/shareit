@@ -6,15 +6,11 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    - if current_user and not current_user.confirmed?
-      Warning, you should confirm your email.
-    - if user_signed_in?
-      = link_to 'log out', destroy_user_session_path
-      = link_to t('.import'), imports_path
-    - else
-      = link_to 'log in', new_user_session_path
-      = link_to 'register', new_user_registration_path
-    - flash.each do |name, msg|
-      %p{class: "#{name}"}
-        =msg
-    = yield
+    =render 'layouts/nav'
+    -#- if current_user and not current_user.confirmed?
+      -#.alert.alert-danger Warning, you should confirm your email.
+    .container
+      - flash.each do |name, msg|
+        %div{class: "alert alert-#{name}"}
+          =msg
+      = yield

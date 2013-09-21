@@ -52,6 +52,9 @@ gem 'factory_girl_rails', :groups => [:development, :test]
 gem 'rspec-rails'
 gem 'shoulda-matchers'
 
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'bourbon'
+
 group :development do
   gem 'wirble'
   gem 'hirb'

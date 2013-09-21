@@ -22,8 +22,8 @@ class Item < ActiveRecord::Base
 
   def exifs= exifs
     self[:exifs] = exifs
-    if exifs[:rating]
-      self.rating= exifs[:rating]
+    if exifs['Rating']
+      self.rating= exifs['Rating']
     end
   end
 
