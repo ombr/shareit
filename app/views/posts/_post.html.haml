@@ -1,9 +1,9 @@
 - items = post.items.order('rating DESC').limit(3)
-.row
+.row{id: "post-#{post.id}"}
   .col-xs-12
   .row
     .col-xs-12
-      %h1= post.name
+      %h1= link_to post.name, user_post_path(user_id: @user, id: post), remote: true
   .row
     .col-xs-12
       =render items

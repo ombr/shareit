@@ -7,6 +7,14 @@ class PostsController < ApplicationController
     @posts = @user.posts
   end
 
+  def show
+    @post = @user.posts.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   private
 
     def require_user
