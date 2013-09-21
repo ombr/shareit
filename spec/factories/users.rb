@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    email 'luc@boissaye.fr'
+    email { FactoryGirl.generate :email }
     password 'myamazingpassword'
   end
 end

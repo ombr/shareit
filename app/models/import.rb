@@ -1,20 +1,5 @@
 class Import
   class << self
-    def get_client token, refresh_token
-      session = RubyBox::Session.new({
-        client_id: ENV['BOX_CLIENT_ID'],
-        client_secret: ENV['BOX_CLIENT_SECRET'],
-        access_token: token
-      })
-      new_token = session.refresh_token(refresh_token)
-      puts "client = Import.get_client '#{new_token.token}', '#{new_token.refresh_token}'"
-      session = RubyBox::Session.new({
-        client_id: ENV['BOX_CLIENT_ID'],
-        client_secret: ENV['BOX_CLIENT_SECRET'],
-        access_token: new_token.token
-      })
-      RubyBox::Client.new(session)
-    end
     def parent_path item
      names = item.path_collection.entries.map{|i| i['name']}
      names[0] = '' #Remove All Files/
@@ -24,33 +9,37 @@ class Import
       return '/' if item.parent.nil?
       "#{parent_path item}/#{item.name}"
     end
-    def import_folder folder
-      puts "> Import Folder #{path folder}"
+
+    def box_file user, file_name
+      puts "> #{user.email} >Import File #{file_name}"
+      file = user.box_client.file(file_name)
+      Tempfile.open(['prefix',file.name], Rails.root.join('tmp'), encoding: 'ascii-8bit') do |tmp_file|
+        puts 'Download'
+        tmp_file.write file.download
+        puts 'done'
+        Item.create!(
+          path: file_name,
+          file: tmp_file,
+          user: user
+        )
+        puts 'Created !'
+      end
+    end
+
+    def box_folder user, folder_name
+      puts "> #{user.email} >Import Folder #{folder_name}"
+      folder = user.box_client.folder(folder_name)
       folder.items.each do |item|
         case item
         when RubyBox::Folder
-          import_folder item
+          box_folder_without_delay user, path(item)
+        when RubyBox::File
+          box_file user, path(item)
         else
-          puts "> Import File : #{path item}"
-          Tempfile.open(['prefix',item.name], Rails.root.join('tmp'), encoding: 'ascii-8bit') do |file|
-            puts 'Download'
-            file.write item.download
-            puts 'done'
-            Item.create!(
-              path: path(item),
-              file: file
-            )
-            puts 'Create Item'
-          end
-          puts item.class
-          puts item.inspect
+          raise 'What\'s that ??'
         end
       end
     end
-    def box_import token, refresh_token
-      client = get_client token, refresh_token
-      import_folder client.folder('/')
-    end
-    handle_asynchronously :box_import
+    handle_asynchronously :box_folder
   end
 end

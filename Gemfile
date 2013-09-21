@@ -50,6 +50,7 @@ end
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'factory_girl_rails', :groups => [:development, :test]
 gem 'rspec-rails'
+gem 'shoulda-matchers'
 
 group :development do
   gem 'wirble'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130917175110) do
+ActiveRecord::Schema.define(version: 20130921094031) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20130917175110) do
     t.string   "path"
     t.text     "exifs"
     t.integer  "rating",     default: 0
+    t.integer  "user_id"
   end
 
   create_table "items_posts", force: true do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20130917175110) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "path"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 20130917175110) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "box_credentials"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

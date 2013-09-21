@@ -1,5 +1,7 @@
 class ImportsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def index
     @box_url = RubyBox::Session.new({
       client_id: ENV['BOX_CLIENT_ID'],
@@ -16,8 +18,13 @@ class ImportsController < ApplicationController
       client_secret: ENV['BOX_CLIENT_SECRET']
     })
 
-    @token = session.get_access_token(params[:code])
-    Import.box_import(@token.token, @token.refresh_token)
+    token = session.get_access_token(params[:code])
+    current_user.box_credentials = {
+      token: token.token,
+      refresh_token: token.refresh_token
+    }
+    current_user.save!
+    Import.box_folder(current_user, '/')
     flash[:notice] = 'Your files will be imported soon :-D'
     redirect_to root_path
   end

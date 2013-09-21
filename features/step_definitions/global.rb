@@ -1,8 +1,8 @@
 Given(/^I am loggued in$/) do
   password = 'myamazongpassword'
-  user = FactoryGirl.create :user, password: password
+  @user = FactoryGirl.create :user, password: password
   visit new_user_session_path
-  fill_in 'user_email', with: user.email
+  fill_in 'user_email', with: @user.email
   fill_in 'user_password', with: password
   click_button 'Sign in'
 end
@@ -27,13 +27,14 @@ When(/^I import theses files :$/) do |table|
     file = File.open File.join(Rails.root, line[1])
     Item.create!(
       path: line[0],
-      file: line[1]
+      file: line[1],
+      user: @user
     )
   end
 end
 
 Then(/^I should see my post "(.*?)"\.$/) do |name|
-  visit root_path
+  visit user_posts_path(user_id: @user)
   expect(page).to have_content name
   sleep 3
 end

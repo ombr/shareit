@@ -3,6 +3,9 @@ class Post < ActiveRecord::Base
   validates :path, presence: true, uniqueness: true
 
   has_and_belongs_to_many :items
+  belongs_to :user
+
+  validates :user, presence: true
 
   def path= path
     self[:path] = path
