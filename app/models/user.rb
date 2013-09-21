@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  def confirmation_required?
-    false
-  end
 
   def box_client
     session = RubyBox::Session.new({

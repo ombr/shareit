@@ -9,8 +9,8 @@ Feature: Login
     And click on register
     And fill a username, email and password and submit the form
     Then I should be loggued in.
-    And see a warning about my confirmation
-    And receive a confirmation email.
+    #And see a warning about my confirmation
+    #And receive a confirmation email.
   @javascript
   Scenario: I login with username
     Given I have an account
