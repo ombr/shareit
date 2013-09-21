@@ -26,6 +26,7 @@ class Import
         puts 'Created !'
       end
     end
+    handle_asynchronously :box_file
 
     def box_folder user, folder_name
       puts "> #{user.email} >Import Folder #{folder_name}"
