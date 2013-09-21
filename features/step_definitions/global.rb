@@ -19,7 +19,9 @@ When(/^I import my box\.com account$/) do
 end
 
 When(/^I Wait for the jobs$/) do
-  Delayed::Worker.new.work_off
+  while Delayed::Job.count > 0
+    Delayed::Worker.new.work_off
+  end
 end
 
 When(/^I import theses files :$/) do |table|

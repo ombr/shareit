@@ -12,6 +12,7 @@ class Import
 
     def box_file user, file_name
       puts "> #{user.email} >Import File #{file_name}"
+      return if Item.where(user: user, path: file_name).count == 1
       file = user.box_client.file(file_name)
       Tempfile.open(['prefix',file.name], Rails.root.join('tmp'), encoding: 'ascii-8bit') do |tmp_file|
         puts 'Download'
@@ -32,7 +33,7 @@ class Import
       folder.items.each do |item|
         case item
         when RubyBox::Folder
-          box_folder_without_delay user, path(item)
+          box_folder user, path(item)
         when RubyBox::File
           box_file user, path(item)
         else

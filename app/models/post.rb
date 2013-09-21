@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  validates :path, presence: true, uniqueness: true
+  validates_uniqueness_of :path, allow_nil: false, scope: :user_id
 
   has_and_belongs_to_many :items
   belongs_to :user

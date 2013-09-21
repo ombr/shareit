@@ -34,6 +34,29 @@ describe Item do
         subject.posts.first.user.should == subject.user
       end
     end
+
+    #it { should validate_uniqueness_of(:path).scoped_to(:user_id) }
+    describe 'validate_uniqueness_of path' do
+      let (:file2) { File.open File.join(Rails.root, 'spec', 'fixtures', 'image.jpg') }
+      let (:path2) { '/2013/2013-09-26_First_post/image2.jpg' }
+      let (:user2) { FactoryGirl.create :user }
+      it 'raise an exception' do
+        expect {
+        subject
+          Item.create!(path: path, file: file2, user: user)
+        }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it 'Can create a second item' do
+        subject
+        Item.create!(path: path2, file: file, user: user)
+      end
+
+      it 'another user can create an item with the same path' do
+        subject
+        Item.create!(path: path, file: file, user: user2)
+      end
+    end
   end
 
 end

@@ -5,6 +5,7 @@ describe Post do
 
   it { should belong_to(:user) }
   it { should have_and_belong_to_many(:items) }
+  it { should validate_uniqueness_of(:path).scoped_to(:user_id) }
 
   describe '#path=' do
     context 'whithout a name' do

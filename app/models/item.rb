@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
   after_create :create_posts
   before_save :extract_exif
 
-  validates :path, presence: true, uniqueness: true
+  validates_uniqueness_of :path, allow_nil: false, scope: :user
   validates :user, presence: true
 
   def create_posts

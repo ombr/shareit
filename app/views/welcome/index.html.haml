@@ -1,9 +1,1 @@
-%ul
-  - Post.all.each do |p|
-    %li
-      = "#{p.name}"
-      %ul
-        - p.items.order('rating DESC').limit(3).each do |i|
-          %li
-            = i.rating
-            = image_tag i.file.thumb.url
+Welcome !
