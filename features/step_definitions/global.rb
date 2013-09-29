@@ -9,8 +9,8 @@ end
 
 When(/^I import my box\.com account$/) do
   visit root_path
-  click_link 'Import'
-  click_link 'Box'
+  first(:link, 'Import').click
+  first(:link, 'Box').click
   fill_in 'login', with: ENV['TEST_BOX_LOGIN']
   fill_in 'password', with: ENV['TEST_BOX_PASSWORD']
   find('.login_submit').click
@@ -49,7 +49,7 @@ When(/^I visit the home page$/) do
 end
 
 When(/^click on (.*)$/) do |link|
-  click_link link
+  first(:link,link).click
 end
 
 When(/^fill a username, email and password and submit the form$/) do
