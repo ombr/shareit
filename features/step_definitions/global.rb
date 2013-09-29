@@ -29,7 +29,7 @@ When(/^I import theses files :$/) do |table|
     file = File.open File.join(Rails.root, line[1])
     Item.create!(
       path: line[0],
-      file: line[1],
+      file: file,
       user: @user
     )
   end
@@ -39,6 +39,13 @@ Then(/^I should see my post "(.*?)"\.$/) do |name|
   visit user_posts_path(user_id: @user)
   expect(page).to have_content name
   sleep 3
+end
+Then(/^my first post should start the "(.*?)"$/) do |date|
+  Post.first.started_at.should == date
+end
+
+Then(/^my first post should end the "(.*?)"$/) do |date|
+  Post.first.ended_at.should == date
 end
 
 Given(/^I am a guest$/) do

@@ -6,13 +6,12 @@ describe Item do
 
   it { should belong_to(:user) }
 
+  let (:file) { File.open File.join(Rails.root, 'spec', 'fixtures', 'image.jpg') }
+  let (:path) { '/2013/2013-09-26_First_post/image1.jpg' }
+  let (:user) { FactoryGirl.create :user }
+  subject { Item.create!( path: path, file: file, user: user) }
+
   describe '#create!' do
-    let (:file) { File.open File.join(Rails.root, 'spec', 'fixtures', 'image.jpg') }
-    let (:path) { '/2013/2013-09-26_First_post/image1.jpg' }
-    let (:user) { FactoryGirl.create :user }
-
-    subject { Item.create!( path: path, file: file, user: user) }
-
     it 'creates a file object' do
       subject
       Item.count.should == 1
@@ -55,6 +54,29 @@ describe Item do
       it 'another user can create an item with the same path' do
         subject
         Item.create!(path: path, file: file, user: user2)
+      end
+    end
+
+    describe 'extract exifs', focus: true do
+      let (:file) { File.open File.join(Rails.root, 'spec', 'fixtures', 'canon-ixus.jpg') }
+      it 'extract and store the exifs' do
+        subject.exifs["DateTimeOriginal"].should == "2001-06-09 15:17:32 +0200"
+      end
+
+      describe 'date' do
+        it 'extract the date' do
+          subject.started_at.should == "2001-06-09 15:17:32 +0200"
+        end
+        it 'create a post with the right date' do
+          subject.posts.first.started_at.should == "2001-06-09 15:17:32 +0200"
+        end
+      end
+
+      describe 'rating' do
+        let (:file) { File.open File.join(Rails.root, 'spec', 'fixtures', 'image.jpg') }
+        it 'extract the rating' do
+          subject.rating.should == 5
+        end
       end
     end
   end
