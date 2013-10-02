@@ -6,4 +6,4 @@
       %h1= link_to post.name, user_post_path(user_id: @user, id: post), remote: true
   .row
     .col-xs-12
-      =render items
+      =render items, post: post

@@ -2,15 +2,16 @@
 %html
   %head
     %title Blog
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    =render 'layouts/nav'
+    -#=render 'layouts/nav'
     -#- if current_user and not current_user.confirmed?
       -#.alert.alert-danger Warning, you should confirm your email.
-    .container
-      - flash.each do |name, msg|
-        %div{class: "alert alert-#{name}"}
-          =msg
-      = yield
+    -#.container
+      -#- flash.each do |name, msg|
+        -#%div{class: "alert alert-#{name}"}
+          -#=msg
+    = yield

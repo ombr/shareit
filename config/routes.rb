@@ -5,7 +5,9 @@ Blog::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   resources :users do
-    resources :posts, only: [:index, :show]
+    resources :posts, only: [:index, :show] do
+      resources :items, only: [:show]
+    end
   end
   resources :imports, only: [:index] do
     collection do
