@@ -7,11 +7,12 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    -#=render 'layouts/nav'
+    .global
+      =render 'layouts/nav'
+      = yield
     -#- if current_user and not current_user.confirmed?
       -#.alert.alert-danger Warning, you should confirm your email.
     -#.container
       -#- flash.each do |name, msg|
         -#%div{class: "alert alert-#{name}"}
           -#=msg
-    = yield

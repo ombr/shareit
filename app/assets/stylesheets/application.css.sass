@@ -1,9 +1,12 @@
+@import "bourbon"
 @import "bootstrap"
 
 body
-  padding-top: 70px
-  width: 100%
-  height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
 
 .alert-notice
   @extend .alert-success
@@ -11,43 +14,44 @@ body
   @extend .alert-warning
 .alert-error
   @extend .alert-danger
+.global
+  width: 100%
+  height: 100%
 
 .fullscreen
   position: absolute
-  top: 0px
+  top: 40px
   bottom: 0
   left: 0
   right: 0
 
-.right
-  position: absolute
-  right: 0
-  width: 20%
-  height: 100%
-  p
-    position: absolute
-    top: 50%
-    right: 0
-    line-height: 100%
-.left
-  height: 100%
-  position: absolute
-  left: 0
-  width: 20%
-  p
-    position: absolute
-    top: 50%
-    left: 0
-    line-height: 100%
+
 
 .viewer
   position: relative
   text-align: center
   .content
-    padding: 0 10px
     img
       max-height: 100%
       max-width: 100%
+  .next
+    right: 0px
+    text-align: right
+    p
+      @extend .glyphicon-chevron-right
+  .previous
+    text-align: left
+    left: 0
+    p
+      @extend .glyphicon-chevron-left
+  .control
+    position: absolute
+    top: 0
+    width: 20%
+    height: 100%
+    p
+      @extend .glyphicon
+      top: 40%
 
 
 //.viewer
@@ -60,3 +64,9 @@ body
   //.content
     //max-height: 100%
     //max-width: 100%
+.nav
+  position: absolute
+  top: 0
+  li
+    text-overflow: ellipsis
+    @include inline-block

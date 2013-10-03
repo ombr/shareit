@@ -1,13 +1,18 @@
-%nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
+%ul.nav
+  %li
+    = link_to '...', root_path
+  %li
+    =yield :title
+-#%nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
   %ul.nav.navbar-nav
-    %a.navbar-brand{ href: root_path } :-)
-  %ul.nav.navbar-nav.navbar-right
-    - if user_signed_in?
+  %p.navbar-text= "asdasdasdasd"
+  -#%ul.nav.navbar-nav.navbar-right
+    -if user_signed_in?
       %li
         = link_to 'log out', destroy_user_session_path
       %li
         = link_to t('.import'), imports_path
-    - else
+    -else
       %li
         = link_to 'log in', new_user_session_path
       %li
