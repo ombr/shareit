@@ -34,6 +34,11 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    analytics-ruby (0.4.0)
+      faraday (>= 0.8, < 0.10)
+      faraday_middleware (>= 0.8, < 0.10)
+      json (~> 1.7)
+      multi_json (~> 1.0)
     arel (4.0.0)
     atomic (1.1.13)
     awesome_print (1.1.0)
@@ -98,6 +103,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     ffi (1.9.0)
     fog (1.15.0)
       builder
@@ -148,6 +155,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    newrelic_rpm (3.6.7.159)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oauth2 (0.9.2)
@@ -257,6 +265,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  analytics-ruby
   awesome_print
   bootstrap-sass!
   bourbon
@@ -277,6 +286,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mini_exiftool_vendored
+  newrelic_rpm
   parallel
   pg
   rails (= 4.0.0)

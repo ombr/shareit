@@ -9,8 +9,8 @@ end
 
 When(/^I import my box\.com account$/) do
   visit root_path
-  click_link 'Import'
-  click_link 'Box'
+  first(:link, 'Import').click
+  first(:link, 'Box').click
   fill_in 'login', with: ENV['TEST_BOX_LOGIN']
   fill_in 'password', with: ENV['TEST_BOX_PASSWORD']
   find('.login_submit').click
@@ -29,7 +29,7 @@ When(/^I import theses files :$/) do |table|
     file = File.open File.join(Rails.root, line[1])
     Item.create!(
       path: line[0],
-      file: line[1],
+      file: file,
       user: @user
     )
   end
@@ -40,6 +40,13 @@ Then(/^I should see my post "(.*?)"\.$/) do |name|
   expect(page).to have_content name
   sleep 3
 end
+Then(/^my first post should start the "(.*?)"$/) do |date|
+  Post.first.started_at.should == date
+end
+
+Then(/^my first post should end the "(.*?)"$/) do |date|
+  Post.first.ended_at.should == date
+end
 
 Given(/^I am a guest$/) do
 end
@@ -49,7 +56,7 @@ When(/^I visit the home page$/) do
 end
 
 When(/^click on (.*)$/) do |link|
-  click_link link
+  first(:link,link).click
 end
 
 When(/^fill a username, email and password and submit the form$/) do

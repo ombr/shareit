@@ -47,6 +47,10 @@ group :doc do
 end
 
 
+# Analytics
+gem 'newrelic_rpm'
+gem 'analytics-ruby'
+
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'factory_girl_rails', :groups => [:development, :test]
 gem 'rspec-rails'

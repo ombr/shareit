@@ -16,6 +16,10 @@ class Item < ActiveRecord::Base
   def create_posts
     current_path = Pathname.new self.path
     post = Post.find_or_create_by!(path: current_path.parent.to_s, user: user)
+    if post.started_at.nil? or post.started_at > started_at
+      post.started_at = started_at
+    end
+
     post.items << self
     post.save!
   end
@@ -24,6 +28,9 @@ class Item < ActiveRecord::Base
     self[:exifs] = exifs
     if exifs['Rating']
       self.rating= exifs['Rating']
+    end
+    if exifs['DateTimeOriginal']
+      self.started_at= exifs['DateTimeOriginal']
     end
   end
 
