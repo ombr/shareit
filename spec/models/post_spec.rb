@@ -24,24 +24,39 @@ describe Post do
     end
   end
   describe 'dates' do
-    #let (:file1) { File.open(File.join(Rails.root, 'spec', 'fixtures', 'canon-ixus.jpg'))}
-    #let (:file2) { File.open(File.join(Rails.root, 'spec', 'fixtures', 'canon-ixus.jpg'))}
-    #let :item1, {FactoryGirl.create(:item, file: file1, path: 'test1.jpg')}
-    #let :item1, {FactoryGirl.create(:item, file: file2, path: 'test2.jpg')}
+    let(:user) { FactoryGirl.create :user }
+    let (:file1) { File.open(File.join(Rails.root, 'spec', 'fixtures', 'canon-ixus.jpg')) }
+    let (:file2) { File.open(File.join(Rails.root, 'spec', 'fixtures', 'fujifilm-dx10.jpg')) }
+    let (:item1) { FactoryGirl.create(:item, file: file1, path: 'test1.jpg', user: user) }
+    let (:item2) { FactoryGirl.create(:item, file: file2, path: 'test2.jpg', user: user) }
 
-    #describe 'started_at' do
-      #it 'returns the right started_at date' do
-        #item1
-        #item2
-        #item1.posts.first.started_at.should == "Thu, 12 Apr 2001 18:33:14 UTC +00:00"
-      #end
+    describe 'started_at' do
+      it 'returns the right date' do
+        item1
+        item2
+        item1.posts.first.started_at.should == "Thu, 12 Apr 2001 18:33:14 UTC +00:00"
+      end
 
-      #it 'returns the right started_at date' do
-        #item2
-        #item1
-        #item2.posts.first.started_at.should == "Thu, 12 Apr 2001 18:33:14 UTC +00:00"
-      #end
-    #end
+      it 'returns the right date' do
+        item2
+        item1
+        item2.posts.first.started_at.should == "Thu, 12 Apr 2001 18:33:14 UTC +00:00"
+      end
+    end
+
+    describe 'ended_at' do
+      it 'returns the right date' do
+        item1
+        item2
+        item1.posts.first.ended_at.should == "Sat, 09 Jun 2001 13:17:32 UTC +00:00"
+      end
+
+      it 'returns the right date' do
+        item2
+        item1
+        item2.posts.first.ended_at.should == "Sat, 09 Jun 2001 13:17:32 UTC +00:00"
+      end
+    end
 
 
   end
