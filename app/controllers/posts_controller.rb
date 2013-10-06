@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_filter :check_access
 
   def index
-    @posts = @user.posts
+    @posts = @user.posts.order(started_at: :desc)
   end
 
   def show

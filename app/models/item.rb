@@ -16,11 +16,11 @@ class Item < ActiveRecord::Base
   def create_posts
     current_path = Pathname.new self.path
     post = Post.find_or_create_by!(path: current_path.parent.to_s, user: user)
-    if post.started_at.nil? or started_at < post.started_at
+    if post.started_at.nil? or ( started_at and post.started_at > started_at )
       post.started_at = started_at
     end
 
-    if post.ended_at.nil? or ended_at > post.ended_at
+    if post.ended_at.nil? or (ended_at and post.ended_at < ended_at)
       post.ended_at = ended_at
     end
 
