@@ -88,3 +88,26 @@ When(/^fill my username and password$/) do
   fill_in 'user_password', with: @user.password
   click_button 'Sign in'
 end
+
+When(/^when I go to my first post$/) do
+  visit user_post_path(user_id: @user, id: @user.posts.first)
+end
+
+Then(/^I should see my image in this order:$/) do |table|
+  raise table.join('.*')
+  r = Regexp.new("#{table.flatten.join('.*')}")
+  page.body.should =~ r
+end
+
+Then(/^I should see my image in the right order$/) do
+  page.body.should =~ /ITEM1.*ITEM2.*ITEM3/
+end
+
+When(/^I click on the first item$/) do
+  #TODO
+end
+
+Then(/^I should see the second image$/) do
+  pending # express the regexp above with the code you wish you had
+end
+

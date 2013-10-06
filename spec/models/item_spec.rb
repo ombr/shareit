@@ -93,8 +93,8 @@ describe Item do
   context 'bugs' do
     it 'Import a item without started/ended at date on a post with started_at/ended_at date' do
       expect{
-        Item.create!( path: 'test/test', file: file, user: user)
-        Item.create!( path: 'test/test2', file: nil, user: user)
+        Item.create!( path: 'test/test', file: file, user: user) 
+        Item.create!( path: 'test/test2', file: nil, user: user) 
       }.to_not raise_error
     end
   end

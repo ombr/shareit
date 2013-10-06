@@ -1,2 +1,2 @@
 = link_to user_post_item_path(user_id: @user.id, post_id: post.id, id: item.id) do
-  = image_tag item.file.url(:thumb), title: item.rating, class: 'item-image'
+  = image_tag item.file.url(:thumb), title: item.rating, class: 'item-image', alt: item.path

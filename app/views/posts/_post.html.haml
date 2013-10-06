@@ -4,6 +4,7 @@
   .row
     .col-xs-12
       %h1= link_to post.name, user_post_path(user_id: @user, id: post)
+      = distance_of_time_in_words(post.started_at, post.ended_at) if post.ended_at and post.started_at
   .row
     .col-xs-12
       =render items, post: post
