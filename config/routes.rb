@@ -1,19 +1,19 @@
 Blog::Application.routes.draw do
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  resources :users do
+  resources :users, only: [:show] do
     resources :posts, only: [:index, :show] do
       resources :items, only: [:show]
     end
   end
+
   resources :imports, only: [:index] do
     collection do
       get :box
     end
   end
+
   root 'welcome#index'
 
   # Example of regular route:

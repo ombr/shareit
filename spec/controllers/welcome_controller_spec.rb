@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WelcomeController, focus: true do
+describe WelcomeController do
   describe '#index' do
 
     let(:user) { FactoryGirl.create(:user) }
@@ -21,7 +21,7 @@ describe WelcomeController, focus: true do
 
         it 'redirect to user home' do
           get :index
-          response.should redirect_to user_posts_path(user_id: user)
+          response.should redirect_to user_path(id: user)
         end
 
       end

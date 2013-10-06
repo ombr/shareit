@@ -69,7 +69,7 @@ end
 
 
 Then(/^I should be loggued in\.$/) do
-  expect(page).to have_content "log out"
+  expect(page).to have_content "Log out"
 end
 
 Then(/^receive a confirmation email\.$/) do

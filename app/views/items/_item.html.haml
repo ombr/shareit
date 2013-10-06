@@ -1,15 +1,2 @@
-- content_for :title, @post.name
-.fullscreen
-  .viewer
-    .content
-      = image_tag item.file.url, title: item.rating
-    =link_to user_post_item_path( post_id: @post, id: @post.items.first, user_id: @user), class: 'control previous' do
-      %p
-    =link_to user_post_item_path( post_id: @post, id: @post.items.last, user_id: @user), class: 'control next' do
-      %p
-
-
-
-
--#= link_to user_post_item_path(user_id: @user.id, post_id: post.id, id: item.id) do
-  -#= image_tag item.file.url, title: item.rating, class: 'item-image'
+= link_to user_post_item_path(user_id: @user.id, post_id: post.id, id: item.id) do
+  = image_tag item.file.url(:thumb), title: item.rating, class: 'item-image'
