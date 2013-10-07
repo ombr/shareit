@@ -56,7 +56,7 @@ When(/^I visit the home page$/) do
 end
 
 When(/^click on (.*)$/) do |link|
-  first(:link,link).click
+  (first(:link,link) || first(".#{link}")).click
 end
 
 When(/^fill a username, email and password and submit the form$/) do
@@ -94,20 +94,14 @@ When(/^when I go to my first post$/) do
 end
 
 Then(/^I should see my image in this order:$/) do |table|
-  raise table.join('.*')
-  r = Regexp.new("#{table.flatten.join('.*')}")
-  page.body.should =~ r
+  page.body.should =~ Regexp.new(".*#{table.raw.join('.*')}.*", Regexp::MULTILINE)
 end
 
-Then(/^I should see my image in the right order$/) do
-  page.body.should =~ /ITEM1.*ITEM2.*ITEM3/
+When(/^I click on the first image$/) do
+  first('.item-image').find(:xpath, '..').click
 end
 
-When(/^I click on the first item$/) do
-  #TODO
-end
-
-Then(/^I should see the second image$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I should see the item "(.*?)"$/) do |item|
+  page.body.should include item
 end
 

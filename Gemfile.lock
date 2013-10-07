@@ -139,6 +139,8 @@ GEM
     jwt (0.1.8)
       multi_json (>= 1.5)
     kgio (2.8.0)
+    launchy (2.3.0)
+      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -285,6 +287,7 @@ DEPENDENCIES
   hirb
   jbuilder (~> 1.2)
   jquery-rails
+  launchy
   mini_exiftool_vendored
   newrelic_rpm
   parallel
