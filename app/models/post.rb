@@ -15,6 +15,11 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def next(item)
+    list = items.to_a
+    list[ list.index(item) + 1 ]
+  end
+
   class << self
     def postname(filename)
       if filename.match /(.*\/)*\d{4}[-_]+\d\d[-_]+\d\d[-_]+(.*)/
