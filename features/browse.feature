@@ -3,7 +3,6 @@ Feature: Browsing post
   In order to navigate through the files.
   As a loggued in user
   I want to be abble to navigate and see my files.
-  @wip
   Scenario: I can click next and previous on my files.
     Given I am loggued in
     When I import theses files :

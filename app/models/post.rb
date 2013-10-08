@@ -16,8 +16,18 @@ class Post < ActiveRecord::Base
   end
 
   def next(item)
-    list = items.to_a
+    list = ordered_items.to_a
     list[ list.index(item) + 1 ]
+  end
+
+  def ordered_items
+    items.order(:started_at)
+  end
+
+  def previous(item)
+    list = ordered_items.to_a
+    index = list.index(item) - 1
+    index < 0 ? nil : list[index]
   end
 
   class << self
