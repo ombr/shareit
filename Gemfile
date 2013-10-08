@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml'
 gem 'ruby-box'
 gem 'delayed_job_active_record'
+gem "daemons"
 gem 'foreman'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
