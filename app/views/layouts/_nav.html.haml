@@ -1,12 +1,15 @@
-= link_to 'Home', root_path, class: 'btn'
--if user_signed_in?
-  = link_to "Manage my account", edit_user_registration_path, class: 'btn btn-primary'
-  = link_to 'log out', destroy_user_session_path, class: 'btn btn-primary'
-  = link_to t('.import'), imports_path, class: 'btn btn-primary'
-  = link_to "See my posts", user_posts_path(user_id: current_user), class: 'btn btn-primary'
--else
-  = link_to 'log in', new_user_session_path, class: 'btn btn-primary'
-  = link_to 'register', new_user_registration_path, class: 'btn btn-primary'
+.row
+  .col-cs-12
+    = link_to 'Home', root_path, class: 'btn'
+    -if user_signed_in?
+      = link_to "Manage my account", edit_user_registration_path, class: 'btn btn-primary'
+      = link_to 'log out', destroy_user_session_path, class: 'btn btn-primary'
+      = link_to t('.import'), imports_path, class: 'btn btn-primary'
+      = link_to "See my posts", user_posts_path(user_id: current_user), class: 'btn btn-primary'
+    -else
+      = link_to 'log in', new_user_session_path, class: 'btn btn-primary'
+      = link_to 'register', new_user_registration_path, class: 'btn btn-primary'
+    =yield :nav
 -#%nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
   %ul.nav.navbar-nav
   %p.navbar-text= "asdasdasdasd"
