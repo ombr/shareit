@@ -10,7 +10,7 @@
         =link_to user_post_item_path( post_id: @post, id: @next, user_id: @user), class: 'control next' do
           %p
 =link_to 'Go back', user_post_path(id: @post, user_id: @user), class: 'btn btn-primary'
-%h1= @item.path
+= @item.path
 %table
   %thead
     %tr
