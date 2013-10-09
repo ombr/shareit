@@ -1,12 +1,23 @@
-.fullscreen
-  .viewer
-    .content
-      = image_tag @item.file.url, title: @item.path
-    - if @previous
-      =link_to user_post_item_path( post_id: @post, id: @previous, user_id: @user), class: 'control previous' do
-        %p
-    - if @next
-      =link_to user_post_item_path( post_id: @post, id: @next, user_id: @user), class: 'control next' do
-        %p
-    =link_to user_post_path(id: @post, user_id: @user), class: 'back' do
-      %p ...
+- content_for :top do
+  .fullscreen
+    .viewer
+      .content
+        = image_tag @item.file.url, title: @item.path
+      - if @previous
+        =link_to user_post_item_path( post_id: @post, id: @previous, user_id: @user), class: 'control previous' do
+          %p
+      - if @next
+        =link_to user_post_item_path( post_id: @post, id: @next, user_id: @user), class: 'control next' do
+          %p
+=link_to 'Go back', user_post_path(id: @post, user_id: @user), class: 'btn btn-primary'
+%h1= @item.path
+%table
+  %thead
+    %tr
+      %td key
+      %td value
+  %tbody
+    - @item.exifs.each do |exif|
+      %tr
+        %td= exif[0]
+        %td= exif[1]

@@ -7,13 +7,13 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    .global
-      =render 'layouts/nav'
-      .container
-        - flash.each do |name, msg|
-          %div{class: "alert alert-#{name}"}
-            =msg
-        = yield
+    = yield :top
+    .container
+      = render 'layouts/nav'
+      - flash.each do |name, msg|
+        %div{class: "alert alert-#{name}"}
+          =msg
+      = yield
     /
       Delayed Jobs : #{Delayed::Job.count}
 

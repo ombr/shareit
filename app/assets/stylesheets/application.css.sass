@@ -7,7 +7,6 @@ body
   left: 0
   right: 0
   bottom: 0
-  padding-top: 40px
 
 .alert-notice
   @extend .alert-success
@@ -20,20 +19,26 @@ body
   height: 100%
 
 .fullscreen
-  position: absolute
   background: black
-  top: 0px
-  bottom: 0
-  left: 0
-  right: 0
+  height: 100%
+  width: 100%
 
-
+.container
+  padding-top: 10px
 
 .viewer
-  position: relative
   text-align: center
   .content
+    height: 100%
     img
+      // Center the image
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      margin: auto
+      // resize the picture
       max-height: 100%
       max-width: 100%
   .control
@@ -43,7 +48,8 @@ body
     height: 100%
     p
       @extend .glyphicon
-      top: 40%
+      top: 90%
+      color: white
   .next
     right: 0px
     text-align: right
@@ -54,26 +60,3 @@ body
     left: 0
     p
       @extend .glyphicon-chevron-left
-  .back
-    font-size: 40px
-    position: absolute
-    top: 0
-    left: 0
-
-
-//.viewer
-  //position: absolute
-  //top: 0px
-  //bottom: 0
-  //left: 0
-  //right: 0
-  //text-align: center
-  //.content
-    //max-height: 100%
-    //max-width: 100%
-.nav
-  position: absolute
-  top: 0
-  li
-    text-overflow: ellipsis
-    @include inline-block
