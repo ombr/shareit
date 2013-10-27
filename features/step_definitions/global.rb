@@ -35,11 +35,31 @@ When(/^I import theses files :$/) do |table|
   end
 end
 
+When(/^I import my facebook contacts$/) do
+  visit root_path
+  first(:link, 'Import').click
+  first(:link, 'Facebook').click
+  port = Capybara.current_session.server.port.inspect
+  visit current_url.gsub(ERB::Util.url_encode("http://127.0.0.1:#{port}"), 'http://ombr.local/')
+  fill_in 'email', with: ENV['TEST_FACEBOOK_LOGIN']
+  fill_in 'pass', with: ENV['TEST_FACEBOOK_PASSWORD']
+  find('#u_0_1').click
+  while not (current_url.include? 'http://ombr.local/') do
+    sleep 1
+  end
+  visit current_url.gsub('http://ombr.local/', "http://127.0.0.1:#{port}")
+end
+
+Then(/^I should see my list "(.*?)"$/) do |list|
+  visit groups_path
+  expect(page).to have_content list
+end
+
 Then(/^I should see my post "(.*?)"\.$/) do |name|
   visit user_posts_path(user_id: @user)
   expect(page).to have_content name
-  sleep 3
 end
+
 Then(/^my first post should start the "(.*?)"$/) do |date|
   Post.first.started_at.should == date
 end
@@ -56,7 +76,7 @@ When(/^I visit the home page$/) do
 end
 
 When(/^click on (.*)$/) do |link|
-  first(:link,link).click
+  (first(:link,link) || first(".#{link}")).click
 end
 
 When(/^fill a username, email and password and submit the form$/) do
@@ -88,3 +108,20 @@ When(/^fill my username and password$/) do
   fill_in 'user_password', with: @user.password
   click_button 'Sign in'
 end
+
+When(/^when I go to my first post$/) do
+  visit user_post_path(user_id: @user, id: @user.posts.first)
+end
+
+Then(/^I should see my image in this order:$/) do |table|
+  page.body.should =~ Regexp.new(".*#{table.raw.join('.*')}.*", Regexp::MULTILINE)
+end
+
+When(/^I click on the first image$/) do
+  first('.item-image').find(:xpath, '..').click
+end
+
+Then(/^I should see the item "(.*?)"$/) do |item|
+  page.body.should include item
+end
+

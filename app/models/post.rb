@@ -15,6 +15,21 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def next(item)
+    list = ordered_items.to_a
+    list[ list.index(item) + 1 ]
+  end
+
+  def ordered_items
+    items.order(:started_at)
+  end
+
+  def previous(item)
+    list = ordered_items.to_a
+    index = list.index(item) - 1
+    index < 0 ? nil : list[index]
+  end
+
   class << self
     def postname(filename)
       if filename.match /(.*\/)*\d{4}[-_]+\d\d[-_]+\d\d[-_]+(.*)/

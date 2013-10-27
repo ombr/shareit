@@ -57,18 +57,27 @@ describe Item do
       end
     end
 
-    describe 'extract exifs', focus: true do
+    describe 'extract exifs' do
       let (:file) { File.open File.join(Rails.root, 'spec', 'fixtures', 'canon-ixus.jpg') }
       it 'extract and store the exifs' do
         subject.exifs["DateTimeOriginal"].should == "2001-06-09 15:17:32 +0200"
       end
 
       describe 'date' do
-        it 'extract the date' do
+        it 'extract started_at' do
           subject.started_at.should == "2001-06-09 15:17:32 +0200"
         end
+
+        it 'extract ended_at' do
+          subject.ended_at.should == "2001-06-09 15:17:32 +0200"
+        end
+
         it 'create a post with the right date' do
           subject.posts.first.started_at.should == "2001-06-09 15:17:32 +0200"
+        end
+
+        it 'create a post with the right date' do
+          subject.posts.first.ended_at.should == "2001-06-09 15:17:32 +0200"
         end
       end
 
@@ -78,6 +87,15 @@ describe Item do
           subject.rating.should == 5
         end
       end
+    end
+  end
+
+  context 'bugs' do
+    it 'Import a item without started/ended at date on a post with started_at/ended_at date' do
+      expect{
+        Item.create!( path: 'test/test', file: file, user: user) 
+        Item.create!( path: 'test/test2', file: nil, user: user) 
+      }.to_not raise_error
     end
   end
 

@@ -9,3 +9,9 @@ Feature: Import
     When I import my box.com account
     And I Wait for the jobs
     Then I should see my post "First post".
+  @javascript
+  Scenario: Import facebook contacts
+    Given I am loggued in
+    When I import my facebook contacts
+    And I Wait for the jobs
+    Then I should see my list "Super_List"

@@ -21,7 +21,7 @@ describe PostsController do
       let(:user2) { FactoryGirl.create(:user) }
       it 'redirect if trying to see somebody else posts' do
         get :index, { user_id: user2.id }
-        response.should redirect_to user_posts_path(user_id: user)
+        response.should redirect_to user_path(user)
       end
 
       it 'display the posts' do
@@ -43,7 +43,7 @@ describe PostsController do
       let(:user2) { FactoryGirl.create(:user) }
       it 'redirect if trying to see somebody else posts' do
         get :index, { user_id: user2.id }
-        response.should redirect_to user_posts_path(user_id: user)
+        response.should redirect_to user_path(id: user)
       end
 
       it 'assign the post' do

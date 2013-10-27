@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml'
 gem 'ruby-box'
 gem 'delayed_job_active_record'
+gem "daemons"
 gem 'foreman'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
@@ -38,6 +39,10 @@ gem 'rmagick'
 gem 'mini_exiftool_vendored'
 gem 'parallel'
 gem 'devise'
+gem 'oauth2', '~> 0.5.0'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'httparty'
 
 gem 'geocoder'
 
@@ -53,6 +58,17 @@ gem 'analytics-ruby'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'factory_girl_rails', :groups => [:development, :test]
+group :development, :test do
+  gem 'guard-livereload'
+  gem 'guard'
+  gem 'spork', '1.0.0rc4'
+  gem 'rb-inotify'
+  gem 'spork-rails', github: 'sporkrb/spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'guard-rspec'
+  gem 'libnotify'
+end
 gem 'rspec-rails'
 gem 'shoulda-matchers'
 
@@ -69,6 +85,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'launchy'
 end
 
 # Use ActiveModel has_secure_password

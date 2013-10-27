@@ -1,1 +1,1 @@
---color
+--color --format documentation --format html --out rspec.html

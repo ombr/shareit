@@ -11,7 +11,6 @@ Feature: Folder parsing
       |/2013/2013-09-14_First_post/random_name.jpg|/spec/fixtures/image.jpg|
       |/2013/2013-09-14_First_post/Another random_name.jpg|/spec/fixtures/image.jpg|
     Then I should see my post "First post".
-  @wip
   Scenario: The post should have the date of the file it contains
     Given I am loggued in
     When I import theses files :

@@ -3,6 +3,7 @@ class ImportsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @facebook_url = user_omniauth_authorize_path(:facebook, scope: 'read_friendlists')
     @box_url = RubyBox::Session.new({
       client_id: ENV['BOX_CLIENT_ID'],
       client_secret: ENV['BOX_CLIENT_SECRET']
