@@ -39,6 +39,10 @@ gem 'rmagick'
 gem 'mini_exiftool_vendored'
 gem 'parallel'
 gem 'devise'
+gem 'oauth2', '~> 0.5.0'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'httparty'
 
 gem 'geocoder'
 
@@ -54,6 +58,17 @@ gem 'analytics-ruby'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'factory_girl_rails', :groups => [:development, :test]
+group :development, :test do
+  gem 'guard-livereload'
+  gem 'guard'
+  gem 'spork', '1.0.0rc4'
+  gem 'rb-inotify'
+  gem 'spork-rails', github: 'sporkrb/spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'guard-rspec'
+  gem 'libnotify'
+end
 gem 'rspec-rails'
 gem 'shoulda-matchers'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131006133158) do
+ActiveRecord::Schema.define(version: 20131027111242) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20131006133158) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "groups", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "name"
+  end
 
   create_table "items", force: true do |t|
     t.datetime "created_at"
@@ -74,6 +81,10 @@ ActiveRecord::Schema.define(version: 20131006133158) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "box_credentials"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "facebook_credentials"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

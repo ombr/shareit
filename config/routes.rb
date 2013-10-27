@@ -2,6 +2,8 @@ Blog::Application.routes.draw do
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
 
+  resources :groups, only: [:index]
+
   resources :users, only: [:show] do
     resources :posts, only: [:index, :show] do
       resources :items, only: [:show]

@@ -35,11 +35,31 @@ When(/^I import theses files :$/) do |table|
   end
 end
 
+When(/^I import my facebook contacts$/) do
+  visit root_path
+  first(:link, 'Import').click
+  first(:link, 'Facebook').click
+  port = Capybara.current_session.server.port.inspect
+  visit current_url.gsub(ERB::Util.url_encode("http://127.0.0.1:#{port}"), 'http://ombr.local/')
+  fill_in 'email', with: ENV['TEST_FACEBOOK_LOGIN']
+  fill_in 'pass', with: ENV['TEST_FACEBOOK_PASSWORD']
+  find('#u_0_1').click
+  while not (current_url.include? 'http://ombr.local/') do
+    sleep 1
+  end
+  visit current_url.gsub('http://ombr.local/', "http://127.0.0.1:#{port}")
+end
+
+Then(/^I should see my list "(.*?)"$/) do |list|
+  visit groups_path
+  expect(page).to have_content list
+end
+
 Then(/^I should see my post "(.*?)"\.$/) do |name|
   visit user_posts_path(user_id: @user)
   expect(page).to have_content name
-  sleep 3
 end
+
 Then(/^my first post should start the "(.*?)"$/) do |date|
   Post.first.started_at.should == date
 end
@@ -76,7 +96,7 @@ end
 
 
 Then(/^I should be loggued in\.$/) do
-  expect(page).to have_content "Log out"
+  expect(page).to have_content "log out"
 end
 
 Then(/^receive a confirmation email\.$/) do

@@ -2,13 +2,16 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :items
+  has_many :groups
 
   serialize :box_credentials
+  serialize :facebook_credentials
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :omniauthable, :omniauth_providers => [:facebook]
 
   def box_client
     session = RubyBox::Session.new({
