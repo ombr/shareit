@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Facebook do
+describe Facebook, focus: true do
 
   let(:user) { FactoryGirl.create :user, :with_facebook }
 
@@ -13,6 +13,17 @@ describe Facebook do
       Facebook.should_receive(:import_group).with(user, '10908559384516564', 'Super_List')
         .and_return
       Facebook.import user
+    end
+  end
+
+  describe '#import_user' do
+    let(:group) { FactoryGirl.create :group, user: user }
+    it 'create a group member'
+    it 'create a user' do
+      group
+      expect {
+        Facebook.import_user(group, '877460424', 'Super User')
+      }.to change{User.count}.by(1)
     end
 
   end
@@ -27,6 +38,14 @@ describe Facebook do
     end
 
     it 'request facebook for the members' do
+      Facebook.should_receive(:request)
+        .with(user, '10908559384516564/members')
+        .and_yield([{"id"=>"877460424", "name"=>"Super User"}])
+      Facebook.import_group(user, 10908559384516564, 'Super_List')
+    end
+
+    it '#import the members' do
+      Facebook.should_receive(:import_user)
       Facebook.should_receive(:request)
         .with(user, '10908559384516564/members')
         .and_yield([{"id"=>"877460424", "name"=>"Super User"}])

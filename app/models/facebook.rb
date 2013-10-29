@@ -7,12 +7,19 @@ class Facebook
         end
       end
     end
+
     def import_group user, id, name
       puts name
       group = Group.find_or_create_by user: user, name: name
       request(user, "#{id}/members") do |members|
-        #raise members.inspect
+        members.each do |member|
+          import_user(group, member['id'], member['name'])
+        end
       end
+    end
+
+    def import_member group, id, name
+
     end
 
     def request user, endpoint
