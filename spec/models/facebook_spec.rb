@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Facebook do
+describe Facebook, focus: true do
 
   let(:user) { FactoryGirl.create :user, :with_facebook }
 
@@ -14,8 +14,50 @@ describe Facebook do
         .and_return
       Facebook.import user
     end
+  end
+
+  describe '#import_member' do
+    let(:group) { FactoryGirl.create :group, user: user }
+    let(:membership) { FactoryGirl.create :membership, user: user, group: group }
+
+    it 'create a group member' do
+      Facebook.import_member(group, '877460424', 'Super User')
+      group.users.should include User.where(uid: 877460424.to_s).first
+    end
+
+    it 'does not create a group member if user is member' do
+      membership
+      user.update!(uid: '877460424')
+      expect {
+        Facebook.import_member(group, '877460424', 'Super User')
+      }.to_not change{Membership.count}
+    end
+
+    it 'create a user' do
+      group
+      expect {
+        Facebook.import_member(group, '877460424', 'Super User')
+      }.to change{User.count}.by(1)
+    end
+
+    it 'does not try change email if already defined', focus: true do
+      group
+      user.update!(uid: '877460424')
+      expect {
+        Facebook.import_member(group, '877460424', 'Super User')
+      }.to_not change{user.reload.unconfirmed_email}
+    end
+
+    it 'does not change password if already defined', focus: true do
+      group
+      user.update!(uid: '877460424')
+      expect {
+        Facebook.import_member(group, '877460424', 'Super User')
+      }.to_not change{user.reload.encrypted_password}
+    end
 
   end
+
   describe '#import_group' do
     it 'creates a group' do
       Facebook.should_receive(:request)
@@ -27,6 +69,14 @@ describe Facebook do
     end
 
     it 'request facebook for the members' do
+      Facebook.should_receive(:request)
+        .with(user, '10908559384516564/members')
+        .and_yield([{"id"=>"877460424", "name"=>"Super User"}])
+      Facebook.import_group(user, 10908559384516564, 'Super_List')
+    end
+
+    it '#import the members' do
+      Facebook.should_receive(:import_member)
       Facebook.should_receive(:request)
         .with(user, '10908559384516564/members')
         .and_yield([{"id"=>"877460424", "name"=>"Super User"}])

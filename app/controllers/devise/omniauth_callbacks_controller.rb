@@ -4,7 +4,6 @@ class Devise::OmniauthCallbacksController < ApplicationController
   end
   def facebook
     raise 'not yet implemented' if not current_user
-    #raise request.env["omniauth.auth"].credentials.to_hash.inspect
     current_user.update!( facebook_credentials: request.env["omniauth.auth"].credentials.to_hash )
     #current_user.update!(
       #provider: request.env['omniauth.auth']['provider'],
