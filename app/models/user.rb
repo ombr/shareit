@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :items
   has_many :groups
+  has_many :memberships
 
   serialize :box_credentials
   serialize :facebook_credentials
@@ -36,4 +37,10 @@ class User < ActiveRecord::Base
     })
     RubyBox::Client.new(session)
   end
+
+  def avatar(size)
+    return "http://graph.facebook.com/#{uid}/picture?width=#{size}&height=#{size}" if uid.present?
+    GravatarImageTag.gravatar_url(email, size: size)
+  end
+
 end

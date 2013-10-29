@@ -42,6 +42,7 @@ gem 'devise'
 gem 'oauth2', '~> 0.5.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'gravatar_image_tag'
 gem 'httparty'
 
 gem 'geocoder'

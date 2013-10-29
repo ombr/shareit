@@ -1,3 +1,7 @@
 %ul
   - @groups.each do |group|
-    %li= group.name
+    %li
+      %h3= group.name
+      %ul
+        - group.users.each do |user|
+          =image_tag user.avatar(100), alt: user.name, size: '100x100', title: user.name

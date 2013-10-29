@@ -13,13 +13,23 @@ class Facebook
       group = Group.find_or_create_by user: user, name: name
       request(user, "#{id}/members") do |members|
         members.each do |member|
-          import_user(group, member['id'], member['name'])
+          import_member(group, member['id'], member['name'])
         end
       end
     end
 
-    def import_member group, id, name
+    def import_user id, name
+      user = User.find_or_create_by uid: id.to_s
+      user.name = name
+      user.email = "facebook-#{name.parameterize}@ombr.fr" if user.email.blank?
+      user.password= Devise.friendly_token[0,20] if user.encrypted_password.blank?
+      user.save!
+      user
+    end
 
+    def import_member group, id, name
+      user = import_user id, name
+      user.memberships.find_or_create_by group: group
     end
 
     def request user, endpoint
