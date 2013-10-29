@@ -288,6 +288,10 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.4.6)
     spork (1.0.0rc4)
     sprockets (2.10.0)
@@ -375,6 +379,7 @@ DEPENDENCIES
   sdoc
   selenium-webdriver
   shoulda-matchers
+  simplecov
   spork (= 1.0.0rc4)
   spork-rails!
   turbolinks

@@ -1,5 +1,7 @@
 require 'rubygems'
 module ActiveModel; module Observing; end; end # Prevents spork from exiting due to non-existent class in rails4
+require 'simplecov'
+SimpleCov.start 'rails'
 require 'spork'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
