@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+preload=->
+  $('.preload').each (i, e)->
+    $div = $('<div style="position: absolute; top: -9999px; left: -9999px"></div>')
+    $('body').append($div)
+    setTimeout(()->
+      $.get($(e).attr('href'), (data)->
+        $div.append(data.split('<body>').pop().split('</body>')[0])
+      )
+    , 500 * i)
+
+$( window ).load ->
+  preload()
+  $(document).on 'page:load', ()->
+    preload()

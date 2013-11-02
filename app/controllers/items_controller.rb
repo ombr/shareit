@@ -6,8 +6,10 @@ class ItemsController < ApplicationController
   before_filter :check_access
 
   def show
+    expires_in 5.minutes, :public => true
     @next = @post.next(@item)
     @previous = @post.previous(@item)
+    render layout: 'application_without_nav'
   end
   private
 
