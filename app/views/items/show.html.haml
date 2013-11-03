@@ -8,6 +8,9 @@
     - if @previous
       =link_to user_post_item_path( post_id: @post, id: @previous, user_id: @user), class: 'control previous preload' do
         %p
+    .control.fullscreen_toggle
+    =link_to user_post_path( id: @post, user_id: @user), class: 'control home' do
+      %p
 -#
   .row
     .col-xs-10
