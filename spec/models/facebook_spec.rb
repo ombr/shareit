@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Facebook, focus: true do
+describe Facebook do
 
   let(:user) { FactoryGirl.create :user, :with_facebook }
 
@@ -40,7 +40,7 @@ describe Facebook, focus: true do
       }.to change{User.count}.by(1)
     end
 
-    it 'does not try change email if already defined', focus: true do
+    it 'does not try change email if already defined' do
       group
       user.update!(uid: '877460424')
       expect {
@@ -48,7 +48,7 @@ describe Facebook, focus: true do
       }.to_not change{user.reload.unconfirmed_email}
     end
 
-    it 'does not change password if already defined', focus: true do
+    it 'does not change password if already defined' do
       group
       user.update!(uid: '877460424')
       expect {

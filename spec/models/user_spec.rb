@@ -6,7 +6,7 @@ describe User do
   it { should have_many(:groups) }
   it { should have_many(:memberships) }
 
-  describe '#avatar', focus: true do
+  describe '#avatar' do
     subject{ FactoryGirl.create :user }
     it { subject.avatar(100).should == GravatarImageTag.gravatar_url(subject.email, size: 100)}
 

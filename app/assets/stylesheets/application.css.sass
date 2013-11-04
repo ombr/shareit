@@ -42,21 +42,50 @@ body
       max-height: 100%
       max-width: 100%
   .control
+    opacity: 0.5
     position: absolute
+    font-size: 300%
+    color: white
+  .next-previous
     top: 0
     width: 20%
     height: 100%
     p
       @extend .glyphicon
-      top: 90%
-      color: white
+      padding: 5px
+      top: 47%
   .next
-    right: 0px
+    @extend .next-previous
+    right: 0
     text-align: right
     p
       @extend .glyphicon-chevron-right
   .previous
+    @extend .next-previous
     text-align: left
     left: 0
     p
       @extend .glyphicon-chevron-left
+
+  .home
+    top: 0
+    left: 0
+    width: 20%
+    height: 20%
+    text-align: left
+    p
+      padding: 5px
+      @extend .glyphicon
+      @extend .glyphicon-home
+  .fullscreen_toggle
+    right: 10px
+    top: 10px
+
+body:-webkit-full-screen
+  .fullscreen_toggle
+    color: red
+
+.fullscreen_toggle
+  display: none
+  @extend .glyphicon
+  @extend .glyphicon-fullscreen

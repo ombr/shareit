@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require hammer.min
+//= require bigscreen.min
+//= require shortcuts
+//= require items

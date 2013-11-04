@@ -60,24 +60,24 @@ describe Item do
     describe 'extract exifs' do
       let (:file) { File.open File.join(Rails.root, 'spec', 'fixtures', 'canon-ixus.jpg') }
       it 'extract and store the exifs' do
-        subject.exifs["DateTimeOriginal"].should == "2001-06-09 15:17:32 +0200"
+        subject.exifs["DateTimeOriginal"].should == Time.parse("2001-06-09 15:17:32")
       end
 
       describe 'date' do
         it 'extract started_at' do
-          subject.started_at.should == "2001-06-09 15:17:32 +0200"
+          subject.started_at.should == Time.parse("2001-06-09 15:17:32")
         end
 
         it 'extract ended_at' do
-          subject.ended_at.should == "2001-06-09 15:17:32 +0200"
+          subject.ended_at.should == Time.parse("2001-06-09 15:17:32")
         end
 
         it 'create a post with the right date' do
-          subject.posts.first.started_at.should == "2001-06-09 15:17:32 +0200"
+          subject.posts.first.started_at.should == Time.parse("2001-06-09 15:17:32")
         end
 
         it 'create a post with the right date' do
-          subject.posts.first.ended_at.should == "2001-06-09 15:17:32 +0200"
+          subject.posts.first.ended_at.should == Time.parse("2001-06-09 15:17:32")
         end
       end
 

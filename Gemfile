@@ -88,6 +88,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'zonebie', require: false
   gem 'coveralls', require: false
 end
 
