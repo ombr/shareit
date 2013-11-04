@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: shareit_test
+  username: postgres
