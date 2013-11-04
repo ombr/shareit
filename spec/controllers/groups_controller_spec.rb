@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe GroupsController, focus:true do
+describe GroupsController do
   let(:user) { FactoryGirl.create(:user) }
   let(:group) {FactoryGirl.create(:group, user: user)}
 
-  describe '#index', focus: true do
+  describe '#index' do
     it 'redirect if not loggued in' do
       get :index
       response.should redirect_to new_user_session_path

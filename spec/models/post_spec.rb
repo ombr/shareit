@@ -38,13 +38,13 @@ describe Post do
       it 'returns the right date' do
         item1
         item2
-        item1.posts.first.started_at.should == "Sat, 02 Sep 2000 12:30:10 UTC +00:00"
+        item1.posts.first.started_at.should == Time.zone.parse("Sat, 02 Sep 2000 12:30:10")
       end
 
       it 'returns the right date' do
         item2
         item1
-        item2.posts.first.started_at.should == "Sat, 02 Sep 2000 12:30:10 UTC +00:00"
+        item2.posts.first.started_at.should == Time.zone.parse("Sat, 02 Sep 2000 12:30:10")
       end
     end
 
@@ -52,13 +52,13 @@ describe Post do
       it 'returns the right date' do
         item1
         item2
-        item1.posts.first.ended_at.should == "Thu, 12 Apr 2001 18:33:14 UTC +00:00"
+        item1.posts.first.ended_at.should == Time.zone.parse("Thu, 12 Apr 2001 18:33:14")
       end
 
       it 'returns the right date' do
         item2
         item1
-        item2.posts.first.ended_at.should == "Thu, 12 Apr 2001 18:33:14 UTC +00:00"
+        item2.posts.first.ended_at.should == Time.zone.parse("Thu, 12 Apr 2001 18:33:14")
       end
     end
   end
