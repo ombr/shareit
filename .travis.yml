@@ -4,6 +4,3 @@ rvm:
 before_script:
   - psql -c 'create database shareit_test;' -U postgres
 script: RAILS_ENV=test bundle exec rake db:migrate && bundle exec rspec spec
-env:
-  global:
-    secure: fXmk/Jyrh4yzyU7h98V8eJ4+QXptS4izW8sf1SoK5Fz+JUj4g/Befp/V4QswRyZc1C5nwUCCcVjAGaNdX1WbCZKHhyT23fjKLX413YtShadzcu42Ok+BG1aLONI6O3gm61VlhywgCftfht8if+r1EXjA6dtU2tAc5pgSyLyfsyM=
