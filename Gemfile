@@ -82,12 +82,13 @@ group :development do
   gem 'awesome_print'
 end
 group :test do
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
-  gem 'simplecov', :require => false
+  gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
 
 # Use ActiveModel has_secure_password

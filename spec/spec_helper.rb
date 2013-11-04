@@ -3,6 +3,8 @@ module ActiveModel; module Observing; end; end # Prevents spork from exiting due
 require 'simplecov'
 SimpleCov.start 'rails'
 require 'spork'
+require 'coveralls'
+Coveralls.wear!
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
