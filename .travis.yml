@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.0.0-p247
 before_script:
-  - psql -c 'create database myapp_test;' -U postgres
+  - psql -c 'create database test;' -U postgres
 script: bundle exec rspec spec
 env:
   global:
