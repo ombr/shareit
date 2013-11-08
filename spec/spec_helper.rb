@@ -3,7 +3,6 @@ module ActiveModel; module Observing; end; end # Prevents spork from exiting due
 require 'simplecov'
 SimpleCov.start 'rails'
 require 'spork'
-<<<<<<< HEAD
 require 'zonebie'
 Zonebie.set_random_timezone
 require 'coveralls'
