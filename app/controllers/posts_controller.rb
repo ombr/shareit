@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_filter :check_access
 
   def index
+    render layout: 'application_without_nav'
     @posts = @user.posts.order(started_at: :desc)
   end
 
