@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def index
     render layout: 'application_without_nav'
+    #raise @posts.inspect
     @posts = @user.posts.order(started_at: :desc)
   end
 

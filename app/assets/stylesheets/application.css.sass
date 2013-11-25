@@ -100,16 +100,10 @@ body:-webkit-full-screen
   display: table-cell
   vertical-align: middle
   text-align: center
-
-
-@media (max-width: 600px)
-  .post
-    width: 100% !important
+  width: 100%
 
 
 .post
+  @extend .col-sm-6
   background: pink
-  width: 300px
-  height: 300px
-  margin: 5px
-  @include inline-block
+  height: 100px
