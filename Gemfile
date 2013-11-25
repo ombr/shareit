@@ -35,6 +35,7 @@ gem 'rails_12factor', group: :production
 gem 'unicorn'
 gem 'carrierwave'
 gem 'fog'
+gem 'unf'
 gem 'rmagick'
 gem 'mini_exiftool_vendored'
 gem 'parallel'
