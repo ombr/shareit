@@ -3,6 +3,8 @@ class Devise::OmniauthCallbacksController < ApplicationController
     redirect_to root_path
   end
   def facebook
+    raise request.env["omniauth.auth"].to_hash.inspect
+    raise 'TEST?'
     raise 'not yet implemented' if not current_user
     current_user.update!( facebook_credentials: request.env["omniauth.auth"].credentials.to_hash )
     #current_user.update!(

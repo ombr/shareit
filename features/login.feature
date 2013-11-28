@@ -11,6 +11,13 @@ Feature: Login
     Then I should be loggued in.
     #And see a warning about my confirmation
     #And receive a confirmation email.
+  @wip @omniauth_test
+  Scenario: I login with facebook
+    Given I am a guest
+    When I visit the home page
+    And click on register
+    And click on Sign in with Facebook
+    Then I should be loggued in
   @javascript
   Scenario: I login with username
     Given I have an account

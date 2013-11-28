@@ -21,8 +21,6 @@ class Facebook
     def import_user id, name
       user = User.find_or_create_by uid: id.to_s
       user.name = name
-      user.email = "facebook-#{name.parameterize}@ombr.fr" if user.email.blank?
-      user.password= Devise.friendly_token[0,20] if user.encrypted_password.blank?
       user.save!
       user
     end

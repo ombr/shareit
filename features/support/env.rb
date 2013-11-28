@@ -105,3 +105,48 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+Before('@omniauth_test') do
+  OmniAuth.config.test_mode = true
+ 
+  # the symbol passed to mock_auth is the same as the name of the provider set up in the initializer
+  OmniAuth.config.mock_auth[:facebook] = {
+    "provider"=>"facebook",
+    "uid"=>"1005878440",
+    "info"=>
+    { 
+      "nickname"=>"sombr",
+      "email"=>"luc@boissaye.fr",
+      "name"=>"Luc Boissaye",
+      "first_name"=>"Luc",
+      "last_name"=>"Boissaye",
+      "image"=>"http://graph.facebook.com/1005878440/picture?type=square",
+      "urls"=>{"Facebook"=>"https://www.facebook.com/sombr"},
+      "verified"=>true
+    },
+    "credentials"=>{
+      "token"=>"token",
+      "expires_at"=>1390846643,
+      "expires"=>true},
+      "extra"=>{
+        "raw_info"=>{
+          "id"=>"1005878440",
+          "name"=>"Luc Boissaye",
+          "first_name"=>"Luc",
+          "last_name"=>"Boissaye",
+          "link"=>"https://www.facebook.com/sombr",
+          "username"=>"sombr",
+          "gender"=>"male",
+          "email"=>"luc@boissaye.fr",
+          "timezone"=>1,
+          "locale"=>"en_US",
+          "verified"=>true,
+          "updated_time"=>"2013-10-27T13:30:19+0000"
+        }
+      }
+  }
+
+end
+
+After('@omniauth_test') do
+  OmniAuth.config.test_mode = false
+end

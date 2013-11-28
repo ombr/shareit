@@ -14,7 +14,12 @@ describe User do
       subject{ FactoryGirl.create :user, :with_facebook }
       it { subject.avatar(100).should == "http://graph.facebook.com/#{subject.uid}/picture?width=100&height=100" }
     end
+  end
 
+  describe '#create' do
+    it 'lalal' do
+      User.create! name: 'lalala'
+    end
 
   end
 end

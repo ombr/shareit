@@ -12,7 +12,7 @@ describe Post do
   let (:file1) { File.open(File.join(Rails.root, 'spec', 'fixtures', 'fujifilm-mx1700.jpg')) }
   let (:file2) { File.open(File.join(Rails.root, 'spec', 'fixtures', 'fujifilm-dx10.jpg')) }
   let (:file3) { File.open(File.join(Rails.root, 'spec', 'fixtures', 'canon-ixus.jpg')) }
-
+  
   # The next items are ordered by creation dates (Exifs) :
   let (:item1) { FactoryGirl.create(:item, file: file1, path: 'test1.jpg', user: user) }
   let (:item2) { FactoryGirl.create(:item, file: file2, path: 'test2.jpg', user: user) }
