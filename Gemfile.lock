@@ -388,7 +388,6 @@ DEPENDENCIES
   libnotify
   mini_exiftool_vendored
   newrelic_rpm
-  oauth2
   omniauth
   omniauth-facebook
   parallel
