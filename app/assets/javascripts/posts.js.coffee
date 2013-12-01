@@ -18,12 +18,21 @@ paginate = ()->
       load 'down', previous_url, ()->
         $.waypoints('refresh');
         previous_url = get_url('down')
+        paginate_url()
 
   $('#posts').waypoint
     handler: (direction)->
       load 'up', next_url, ()->
         next_url = get_url('up')
+        paginate_url()
 
+paginate_url=()->
+  $('#posts>div').waypoint('destroy')
+  $('#posts>div').waypoint
+    handler: ()->
+      page = $(this).data('page')
+      return if window.history.state.page? and window.history.state.page == page
+      window.history.pushState({page: page}, '', page)
 $(document).on 'page:load', ()->
   if $('.pagination').length
     paginate()

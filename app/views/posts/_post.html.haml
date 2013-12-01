@@ -1,5 +1,5 @@
 - items = post.items.order('rating DESC').limit(3)
-.row{id: "post-#{post.id}"}
+.row{id: "post-#{post.id}", :'data-page' => params[:page]}
   .col-xs-12
   .row
     .col-xs-12
