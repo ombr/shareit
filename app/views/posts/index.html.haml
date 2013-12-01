@@ -1,1 +1,5 @@
-= render(@posts) || render(partial: 'no_post')
+%div
+  = will_paginate @posts
+  #posts
+    = render(@posts) || render(partial: 'no_post')
+  = will_paginate @posts

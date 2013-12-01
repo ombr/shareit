@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   before_filter :check_access
 
   def index
-    @posts = @user.posts.order(started_at: :desc)
+    @posts = @user.posts.order(started_at: :desc, id: :asc).page(params[:page])
+    redirect_to page: 1 if params[:page] == nil
+    @direction = params[:direction]
+    params['_'] = nil
+    params[:direction]= nil
   end
 
   def show

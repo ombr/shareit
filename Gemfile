@@ -44,6 +44,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'gravatar_image_tag'
 gem 'httparty'
+gem 'will_paginate', '~>3.0'
 
 gem 'geocoder'
 

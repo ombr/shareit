@@ -6,6 +6,7 @@ Blog::Application.routes.draw do
 
   resources :users, only: [:show] do
     resources :posts, only: [:index, :show] do
+      get 'page/:page', action: :index, on: :collection
       resources :items, only: [:show]
     end
   end

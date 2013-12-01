@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
 
   validates :user, presence: true
 
+  self.per_page = 10
+
   def path= path
     self[:path] = path
     if self.name.blank?

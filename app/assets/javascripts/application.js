@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require hammer.min
 //= require bigscreen.min
+//= require waypoints.min
 //= require shortcuts
+//= require posts
 //= require items
