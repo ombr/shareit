@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.0.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 
 gem 'pg'
 
@@ -73,7 +73,7 @@ end
 gem 'rspec-rails'
 gem 'shoulda-matchers'
 
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'bootstrap-sass'
 gem 'bourbon'
 
 group :development do
