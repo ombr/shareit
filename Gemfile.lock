@@ -6,14 +6,6 @@ GIT
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
 
-GIT
-  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 9c6c07f74ff515cf38380b014cfede14a4f0eae4
-  branch: 3
-  specs:
-    bootstrap-sass (3.0.0.0)
-      sass (~> 3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -50,6 +42,8 @@ GEM
     atomic (1.1.14)
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
@@ -357,7 +351,7 @@ PLATFORMS
 DEPENDENCIES
   analytics-ruby
   awesome_print
-  bootstrap-sass!
+  bootstrap-sass (~> 3.0.3.0)
   bourbon
   capybara
   carrierwave
