@@ -17,3 +17,4 @@
 //= require bigscreen.min
 //= require shortcuts
 //= require items
+//= require bootstrap

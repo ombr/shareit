@@ -1,4 +1,11 @@
+development:
+  adapter: postgresql
+  username: ombr
+  password: root
+  database: blog
 test:
   adapter: postgresql
-  database: shareit_test
+  username: ombr
+  password: root
+  database: blog-test
   username: postgres

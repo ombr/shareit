@@ -1,16 +1,18 @@
-.row
-  .col-cs-12
-    = link_to 'Home', root_path, class: 'btn'
-    -if user_signed_in?
-      = link_to "Manage my account", edit_user_registration_path, class: 'btn btn-primary'
-      = link_to 'log out', destroy_user_session_path, class: 'btn btn-primary'
-      = link_to t('.import'), imports_path, class: 'btn btn-primary'
-      = link_to "See my posts", user_posts_path(user_id: current_user), class: 'btn btn-primary'
-    -else
-      = link_to 'log in', new_user_session_path, class: 'btn btn-primary'
-      = link_to 'register', new_user_registration_path, class: 'btn btn-primary'
-    =yield :nav
--#%nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
-  %ul.nav.navbar-nav
-  %p.navbar-text= "asdasdasdasd"
-  -#%ul.nav.navbar-nav.navbar-right
+%nav.navbar.navbar-fixed-bottom.navbar-inverse{role: "navigation"}
+  .navbar-header
+    %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to 'StudioCuicui', root_path, class:'navbar-brand'
+  #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      %li
+        = link_to 'Portofolio', 'portofolio.html'
+      %li
+        = link_to 'publications', 'publications.html'
+      %li
+        = link_to 'Les photographes', 'photographes.html'
+      %li
+        = link_to 'Contact', 'mailto:contact@studiocuicui.com'

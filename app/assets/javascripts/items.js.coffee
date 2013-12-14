@@ -1,4 +1,15 @@
 $ ()->
+  items = $('.item')
+  total = items.length
+  if total > 0
+    i = 0
+    setInterval(()->
+      #console.log items[i%total]
+      i++
+      #console.log $(items[i%total]).scrollTop()
+      $('.test').scrollTop((i%total)*$(items[0]).height())
+      #window.location = "##{$(items[i%total]).attr('id')}"
+    ,3000)
   preload=->
     $div = $('<div style="position: absolute; top: -9999px; left: -9999px"></div>')
     $('body').append($div)
