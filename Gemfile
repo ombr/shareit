@@ -73,7 +73,7 @@ end
 gem 'rspec-rails'
 gem 'shoulda-matchers'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bourbon'
 
 group :development do

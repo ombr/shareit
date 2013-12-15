@@ -42,7 +42,7 @@ GEM
     atomic (1.1.14)
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass (2.3.0.0)
+    bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     bourbon (3.1.8)
       sass (>= 3.2.0)
@@ -351,7 +351,7 @@ PLATFORMS
 DEPENDENCIES
   analytics-ruby
   awesome_print
-  bootstrap-sass
+  bootstrap-sass (~> 3.0.3.0)
   bourbon
   capybara
   carrierwave
